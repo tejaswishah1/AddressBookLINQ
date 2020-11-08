@@ -59,6 +59,60 @@ namespace AddressBookUsingLINQ
                 Console.WriteLine(exception.Message);
             }
         }
+
+        /// <summary>
+        /// Insert Row UC3
+        /// </summary>
+        public void InsertRowIntoTable()
+        {
+            try
+            {
+                DataRow dr = dataTable.NewRow();
+                dr[0] = "Sachin"; dr[1] = "Tendulkar"; dr[2] = "Bandra"; dr[3] = "Mumbai";
+                dr[4] = "Maharashtra"; dr[5] = 400613; dr[6] = "9163121865"; dr[7] = "sachin@gmail.com";
+                ////Add rows
+                dataTable.Rows.Add(dr);
+                ////Display Data
+                DisplayData();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            
+                     
+        }
+
+        /// <summary>
+        /// Edit Existing Contact
+        /// </summary>
+        public void EditExistingContact()
+        {
+            try
+            {
+                ////Contact that has to be edited
+                string editName = "Girish";
+                ////Select using Lambda Function
+                var updateData = dataTable.AsEnumerable().Where(x => x.Field<string>("FirstName").Equals(editName)).FirstOrDefault();
+                if (updateData != null)
+                {
+                    ////Update Phone Number and City
+                    updateData.SetField("PhoneNumber", "8300987876");
+                    updateData.SetField("City", "Pune");
+                    Console.WriteLine("\nPhoneNumber and ZipCode of {0} updated successfully!", editName);
+                    DisplayData();
+                }
+                else
+                {
+                    Console.WriteLine("There is no such record in the Address Book!");
+                }
+            }
+            catch(Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+        }
+
     }
 }
 
