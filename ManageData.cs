@@ -141,6 +141,25 @@ namespace AddressBookUsingLINQ
             }
         }
 
+        /// <summary>
+        /// Count of state
+        /// </summary>
+        public void CountByState()
+        {
+            var recordedData = from rowState in dataTable.AsEnumerable()
+                        group rowState by rowState.Field<string>("State") into state
+                        select new
+                        {
+                            State = state.Key,
+                            CountOfState = state.Count()
+                        };
+            Console.WriteLine("\nCount contacts by State in the Address Book :");
+            
+            foreach (var distinctState in recordedData)
+            {
+                Console.WriteLine(distinctState.State +"  " + distinctState.CountOfState);
+            }
+        }
     }
 }
 

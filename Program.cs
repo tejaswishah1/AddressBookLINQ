@@ -22,9 +22,12 @@ namespace AddressBookUsingLINQ
             //manageData.EditExistingContact();
 
             ////UC5: Delete data
-            manageData.CreateAddressBook();
+            //manageData.CreateAddressBook();
             ////Delete contact name Tejaswi
-            manageData.DeleteContact("Tejaswi");
+            //manageData.DeleteContact("Tejaswi");
+
+            ////UC7: Count by state
+            manageData.CountByState();
 
 
 
