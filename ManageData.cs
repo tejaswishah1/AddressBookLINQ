@@ -47,14 +47,14 @@ namespace AddressBookUsingLINQ
                 var recordedData = from data in dataTable.AsEnumerable() select data;
                 foreach (var list in recordedData)
                 {
-                    Console.WriteLine("First Name: " + list.Field<string>("FirstName") +" "+ "Last Name: " + list.Field<string>("LastName") + " " +
+                    Console.WriteLine("First Name: " + list.Field<string>("FirstName") + " " + "Last Name: " + list.Field<string>("LastName") + " " +
                         "Address " + list.Field<string>("Address") + " " + "City : " + list.Field<string>("City") + " " + "State: " + list.Field<string>("State") + " " + "Zip : " + list.Field<int>("Zip")
-                       +" " + "Phone Number " + list.Field<string>("PhoneNumber") + " " + "Email: " + list.Field<string>("EmailID"));
+                       + " " + "Phone Number " + list.Field<string>("PhoneNumber") + " " + "Email: " + list.Field<string>("EmailID"));
 
                 }
             }
             ////Catch Exception If any
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 Console.WriteLine(exception.Message);
             }
@@ -79,8 +79,8 @@ namespace AddressBookUsingLINQ
             {
                 Console.WriteLine(exception.Message);
             }
-            
-                     
+
+
         }
 
         /// <summary>
@@ -107,7 +107,35 @@ namespace AddressBookUsingLINQ
                     Console.WriteLine("There is no such record in the Address Book!");
                 }
             }
-            catch(Exception exception)
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+        }
+
+        /// <summary>
+        /// Delete row
+        /// </summary>
+        /// <param name="name"></param>
+        public void DeleteContact(string firstName)
+        {
+            try
+            {
+                ////Select row to delete using Lambda function
+                var rowDelete = dataTable.AsEnumerable().Where(a => a.Field<string>("FirstName").Equals(firstName)).FirstOrDefault();
+                if (rowDelete != null)
+                {
+                    rowDelete.Delete();
+                    Console.WriteLine("\nContact with name '{0}' deleted successfully!", firstName);
+                    DisplayData();
+                }
+                else
+                {
+                    Console.WriteLine("There is no such data");
+                }
+            }
+            ////Catch Exception If any
+            catch (Exception exception)
             {
                 Console.WriteLine(exception.Message);
             }

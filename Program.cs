@@ -18,8 +18,13 @@ namespace AddressBookUsingLINQ
             //manageData.InsertRowIntoTable();
 
             ////UC4: Edit Data
+            //manageData.CreateAddressBook();
+            //manageData.EditExistingContact();
+
+            ////UC5: Delete data
             manageData.CreateAddressBook();
-            manageData.EditExistingContact();
+            ////Delete contact name Tejaswi
+            manageData.DeleteContact("Tejaswi");
 
 
 
